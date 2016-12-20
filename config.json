@@ -1,0 +1,16 @@
+{
+	"browserSync": {
+    	"server": true,
+    	"open": false
+    },	
+	"css": {
+		"src" : "./sass/*.scss",
+		"dest": "./css/"		
+	},
+	"js": {
+		"src": "./js/*.js"
+	},
+	"html": {
+		"src": "./*.html"
+	}
+}
