@@ -1,7 +1,8 @@
 $peach: #ffb285, #ff9aac;
-$delay-start-time: 2s;
+$delay-start-time: 0.8s;
 $basic-duration: 1s;
 $cubic: cubic-bezier(0.65, 0.05, 0.36, 1);
+$heart-color: #f15959;
 
 %strip-bg {
 	background-color: hsl(2, 57%, 40%);
@@ -37,11 +38,10 @@ repeating-linear-gradient(125deg, transparent, transparent 2px, rgba(0,0,0,.2) 2
 
 @mixin change-background ($deg: 134, $colors...) {
 	background: linear-gradient(#{$deg}deg, $colors);
-	background-size: 1200% 1200%;
-	animation: changeColor 20s ease infinite;
+	background-size: 1000% 1000%;
+	animation: changeColor 30s ease infinite;
 }
 
-$heart-color: red;
 
 .page-wrapper {
 	position: absolute;
@@ -53,7 +53,7 @@ $heart-color: red;
 	
 	#top {
 		// @include change-background(298, $peach);
-		@include change-background(280, #28a0ff, #c8ff51, #ffd951, #ff5751, #ff5188, #616cde);
+		@include change-background(280,#98c5ff, #ceed7c, #ffcc13, #ffab7f, #c97fff);
 		height: 100vh;
 
 		.container {
@@ -66,7 +66,7 @@ $heart-color: red;
 		  perspective: 1000px;
 		  transform: translateY(-100%);
 		  animation: dropCube $basic-duration $cubic forwards $delay-start-time; 
-			#cube {
+			#cube-wrapper {
 				width: 100%;
 				height: 100%;
 				position: absolute;
@@ -81,7 +81,8 @@ $heart-color: red;
 					transition: all 0.5s;
 					box-sizing: border-box;
 					background-color:#FFF;
-					opacity: 0.8;
+					opacity: 0.6;
+					border: 1px solid #c1c1c1;
 					// @extend %star-bg;
 				}
 				.front  { transform: rotateY( 0deg ) translateZ( 100px ); z-index: 3;}
@@ -89,67 +90,76 @@ $heart-color: red;
 			 	.right  { transform: rotateY(  90deg ) translateZ( 100px ); }
 			 	.left   { transform: rotateY( -90deg ) translateZ( 100px ); z-index: 3;}
 			 	.top    { transform: rotateX(  90deg ) translateZ( 100px ); z-index:1; animation: openTop $basic-duration forwards $delay-start-time+1; }
-			 	.bottom { transform: rotateX( -90deg ) translateZ( 100px ); }
+			 	.bottom { transform: rotateX( -90deg ) translateZ( 100px ); }		
+			}
+			#heart {
+				width: 100%;
+			    height: 100%;
+			    position: absolute;
+			    z-index: 2;
+			    top: 0;
+			    transform: rotateY(0deg);
+			    animation: showHeart $basic-duration forwards $delay-start-time+2
+			    	, heartbeat 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards $delay-start-time+3 9 alternate
+			    	// , scaleToFullSreen 2s forwards $delay-start-time+8
+			    ;
 				
-				#heart {
-					width: 100%;
-				    height: 100%;
-				    position: absolute;
-				    z-index: 2;
-				    top: 0;
-				    transform: rotateY(0deg);
-				    animation: showHeart $basic-duration forwards $delay-start-time+2, heartbeat 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) $delay-start-time+3 infinite alternate;
-					
-					* { position: absolute; }
-					.heart-top {
-						height: 25%;
-						width: 50.25%;
+				* { position: absolute; }
+				.heart-top {
+					height: 25%;
+					width: 50.25%;
+					top: 0;
+					overflow: hidden;
+					&:after {
 						top: 0;
-						overflow: hidden;
-						&:after {
-							top: 0;
-							content: "";
-							position: absolute; 
-							height: 200%;
-							width: 104%;
-							background: $heart-color;
-							border-top-left-radius: 70% 80%;
-							border-top-right-radius: 80% 80%;
-							border-bottom-right-radius: 50% 50%;
-							border-bottom-left-radius: 50% 50%;
-						}
-						&.lft, &.lft:after {left: 0};
-						&.rgt {right: 0};
-						&.rgt:after {
-							right: 0;
-							border-top-left-radius: 80% 80%;
-							border-top-right-radius: 70% 80%;
-						}
+						content: "";
+						position: absolute; 
+						height: 200%;
+						width: 104%;
+						background: $heart-color;
+						border-top-left-radius: 70% 80%;
+						border-top-right-radius: 80% 80%;
+						border-bottom-right-radius: 50% 50%;
+						border-bottom-left-radius: 50% 50%;
 					}
-
-					.heart-bot {
-						height: 75.5%;
-						width: 50.25%;
-						bottom: 0;
-						overflow: hidden;
-						&:after {
-							position: absolute; 
-							content: "";
-							height: 95%;
-							width: 160%;
-							background: $heart-color;
-							top: 0;
-							border-bottom-left-radius: 100% 100%;
-						}
-						&.lft, &.lft:after {left: 0};
-						&.rgt {right: 0};
-						&.rgt:after {
-							right: 0;
-							border-bottom-left-radius: 0;
-							border-bottom-right-radius: 100% 100%;
-						}
+					&.lft, &.lft:after {left: 0};
+					&.rgt {right: 0};
+					&.rgt:after {
+						right: 0;
+						border-top-left-radius: 80% 80%;
+						border-top-right-radius: 70% 80%;
 					}
 				}
+
+				.heart-bot {
+					height: 75.5%;
+					width: 50.25%;
+					bottom: 0;
+					overflow: hidden;
+					&:after {
+						position: absolute; 
+						content: "";
+						height: 95%;
+						width: 160%;
+						background: $heart-color;
+						top: 0;
+						border-bottom-left-radius: 100% 100%;
+					}
+					&.lft, &.lft:after {left: 0};
+					&.rgt {right: 0};
+					&.rgt:after {
+						right: 0;
+						border-bottom-left-radius: 0;
+						border-bottom-right-radius: 100% 100%;
+					}
+				}
+			}
+			h1 {
+			    color: #000;
+				text-align: center;
+			    margin: 0;
+			    padding-top: 15%;
+				font-size: 22px;
 			}
 		}
 	}
@@ -185,6 +195,10 @@ $heart-color: red;
 		transform: scale(0.9);
 	}
 }
+@keyframes scaleToFullSreen {
+	100% { transform: scale(10);}
+}
+
 //bg
 @keyframes changeColor { 
     0%{background-position:0% 50%}
