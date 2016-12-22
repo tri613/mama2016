@@ -51,6 +51,10 @@ repeating-linear-gradient(125deg, transparent, transparent 2px, rgba(0,0,0,.2) 2
 	color: #FFF;
 	font-family: Raleway, 微軟正黑體, "Microsoft JhengHei", Arial, Helvetica, sans-serif;
 	
+	.page {
+		overflow: hidden;
+	}
+
 	#top {
 		// @include change-background(298, $peach);
 		@include change-background(280,#98c5ff, #ceed7c, #ffcc13, #ffab7f, #c97fff);
@@ -101,7 +105,7 @@ repeating-linear-gradient(125deg, transparent, transparent 2px, rgba(0,0,0,.2) 2
 			    transform: rotateY(0deg);
 			    animation: showHeart $basic-duration forwards $delay-start-time+2
 			    	, heartbeat 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards $delay-start-time+3 9 alternate
-			    	// , scaleToFullSreen 2s forwards $delay-start-time+8
+			    	, scaleToFullSreen 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards $delay-start-time+7
 			    ;
 				
 				* { position: absolute; }
@@ -196,7 +200,7 @@ repeating-linear-gradient(125deg, transparent, transparent 2px, rgba(0,0,0,.2) 2
 	}
 }
 @keyframes scaleToFullSreen {
-	100% { transform: scale(10);}
+	100% { transform: translateZ(200px) scale(10);}
 }
 
 //bg
