@@ -8,7 +8,7 @@ header {
 }
 header .btn {
 	display: inline-block;
-	padding: 20px 10px;
+	padding: 10px;
 	margin-left: 10px;
 }
 header .rgt {
@@ -35,9 +35,11 @@ header .rgt {
     min-height: 100vh;
 }
 
-#main {
+.flex-wrap {
 	display: flex;
 	flex-direction: column;
+	position: relative;
+	top: 60px;
 }
 #main section {
 	flex: 1;
@@ -49,8 +51,9 @@ header .rgt {
 	margin: 1.5em auto;
 }
 .btn-wrap > * { 
-	display: inline-block; 
+	/*display: inline-block; */
 	vertical-align: middle;
+	margin: 15px auto;
 }
 
 .btn-wrap .btn {

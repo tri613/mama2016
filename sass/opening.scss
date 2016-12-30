@@ -3,12 +3,13 @@ $delay-start-time: 0.8s;
 $basic-duration: 1s;
 $cubic: cubic-bezier(0.65, 0.05, 0.36, 1);
 $heart-color: #f15959;
+$rainbow: #e91e63, #ff5722, #ffc107, #25a52a, #2da2ff, #9c27b0, #f44336;
 
 %strip-bg {
 	background-color: hsl(2, 57%, 40%);
-background-image: repeating-linear-gradient(transparent, transparent 50px, rgba(0,0,0,.4) 50px, rgba(0,0,0,.4) 53px, transparent 53px, transparent 63px, rgba(0,0,0,.4) 63px, rgba(0,0,0,.4) 66px, transparent 66px, transparent 116px, rgba(0,0,0,.5) 116px, rgba(0,0,0,.5) 166px, rgba(255,255,255,.2) 166px, rgba(255,255,255,.2) 169px, rgba(0,0,0,.5) 169px, rgba(0,0,0,.5) 179px, rgba(255,255,255,.2) 179px, rgba(255,255,255,.2) 182px, rgba(0,0,0,.5) 182px, rgba(0,0,0,.5) 232px, transparent 232px),
-repeating-linear-gradient(270deg, transparent, transparent 50px, rgba(0,0,0,.4) 50px, rgba(0,0,0,.4) 53px, transparent 53px, transparent 63px, rgba(0,0,0,.4) 63px, rgba(0,0,0,.4) 66px, transparent 66px, transparent 116px, rgba(0,0,0,.5) 116px, rgba(0,0,0,.5) 166px, rgba(255,255,255,.2) 166px, rgba(255,255,255,.2) 169px, rgba(0,0,0,.5) 169px, rgba(0,0,0,.5) 179px, rgba(255,255,255,.2) 179px, rgba(255,255,255,.2) 182px, rgba(0,0,0,.5) 182px, rgba(0,0,0,.5) 232px, transparent 232px),
-repeating-linear-gradient(125deg, transparent, transparent 2px, rgba(0,0,0,.2) 2px, rgba(0,0,0,.2) 3px, transparent 3px, transparent 5px, rgba(0,0,0,.2) 5px);
+	background-image: repeating-linear-gradient(transparent, transparent 50px, rgba(0,0,0,.4) 50px, rgba(0,0,0,.4) 53px, transparent 53px, transparent 63px, rgba(0,0,0,.4) 63px, rgba(0,0,0,.4) 66px, transparent 66px, transparent 116px, rgba(0,0,0,.5) 116px, rgba(0,0,0,.5) 166px, rgba(255,255,255,.2) 166px, rgba(255,255,255,.2) 169px, rgba(0,0,0,.5) 169px, rgba(0,0,0,.5) 179px, rgba(255,255,255,.2) 179px, rgba(255,255,255,.2) 182px, rgba(0,0,0,.5) 182px, rgba(0,0,0,.5) 232px, transparent 232px),
+	repeating-linear-gradient(270deg, transparent, transparent 50px, rgba(0,0,0,.4) 50px, rgba(0,0,0,.4) 53px, transparent 53px, transparent 63px, rgba(0,0,0,.4) 63px, rgba(0,0,0,.4) 66px, transparent 66px, transparent 116px, rgba(0,0,0,.5) 116px, rgba(0,0,0,.5) 166px, rgba(255,255,255,.2) 166px, rgba(255,255,255,.2) 169px, rgba(0,0,0,.5) 169px, rgba(0,0,0,.5) 179px, rgba(255,255,255,.2) 179px, rgba(255,255,255,.2) 182px, rgba(0,0,0,.5) 182px, rgba(0,0,0,.5) 232px, transparent 232px),
+	repeating-linear-gradient(125deg, transparent, transparent 2px, rgba(0,0,0,.2) 2px, rgba(0,0,0,.2) 3px, transparent 3px, transparent 5px, rgba(0,0,0,.2) 5px);
 }
 
 %star-bg {
@@ -49,8 +50,9 @@ body {
 #top {
 	height: 100vh;
 	position: fixed;
-	@include change-background(280,#98c5ff, #ceed7c, #ffcc13, #ffab7f, #c97fff);
-	@include change-background(298, $peach);
+	background-color: #4d5cab;
+	// @include change-background(280,#98c5ff, #ceed7c, #ffcc13, #ffab7f, #c97fff);
+	// @include change-background(298, $peach);
 	.container {
 		visibility: hidden;
 	}
@@ -65,7 +67,8 @@ body {
 		  margin-left: -100px;
 		  perspective: 1000px;
 		  transform: translateY(-100%);
-		  animation: dropCube $basic-duration $cubic forwards $delay-start-time; 
+		  animation: dropCube $basic-duration $cubic forwards $delay-start-time
+		  			,fadeOutBox $basic-duration ease forwards $delay-start-time+5.5;
 			#cube-wrapper {
 				width: 100%;
 				height: 100%;
@@ -101,14 +104,27 @@ body {
 			    transform: rotateY(0deg);
 			    animation: showHeart $basic-duration forwards $delay-start-time+2
 			    	, heartbeat 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards $delay-start-time+3 6 alternate
-			    	, scaleToFullSreen 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards $delay-start-time+5
+			    	, fadeOutHeart 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards $delay-start-time+5
 			    ;
 
 			    > img {
 			    	width: 100%;
 			    	display: block;
 			    }
-				
+			}
+			.sm-heart {
+				width: 80px;
+    			height: 80px;
+    			left: 50%;
+    			top: 50%;
+				margin-left: -40px;
+				margin-left: -40px;
+			    position: absolute;
+			    z-index: 1;
+			    // transition-: all $cubic 3s;
+			    transition-property: all;
+		        transition-duration: 3s;
+			    transition-timing-function: $cubic;
 				* { position: absolute; }
 				.heart-top {
 					height: 25%;
@@ -135,7 +151,6 @@ body {
 						border-top-right-radius: 70% 80%;
 					}
 				}
-
 				.heart-bot {
 					height: 75.5%;
 					width: 50.25%;
@@ -165,11 +180,28 @@ body {
 			    margin: 0;
 			    padding-top: 15%;
 				font-size: 22px;
+			    padding-top: 60px;
 			}
 		}
 	}
 }
-
+$xs : -120%, 200%, -290%, -80%, -200%, 180%, 300%, 100%, 280%, 30%, 80%, -180%;
+$ds : 0s, 0.58s, 0.69s, 0.13s, 0.76s, 0.2s, 0.81s, 0s, 0.43s, 0.3s, 0.25s, 0.5s;
+@each $s in $xs{
+    $i: index($xs, $s);
+	.sm-heart-#{$i} {
+		$p: $i * 100;
+		& > *:after {
+			background: adjust-hue($heart-color, $p) !important;
+		}
+		$j: $i - 1;
+		transition-delay: nth($ds, $i);
+		&.active {
+			transform: translate(nth($xs, $i), -100vh);
+			opacity: 0;
+		}
+	}
+}
 
 // keyframes
 
@@ -200,10 +232,16 @@ body {
 		transform: scale(0.9);
 	}
 }
-@keyframes scaleToFullSreen {
-	100% { transform: translateZ(200px) scale(10);}
+@keyframes fadeOutHeart {
+	// 100% { transform: translateZ(200px) scale(10);}
+	0% {top: -130%;}
+	100% {top: -100vh; opacity: 0; transform: scale(3)};
 }
 
+@keyframes fadeOutBox {
+	0% { transform: translateY(-100%); opacity: 1; }
+	100% { transform: translateY(100vh); opacity: 0; };
+}
 //bg
 @keyframes changeColor { 
     0%{background-position:0% 50%}
