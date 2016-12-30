@@ -5,18 +5,14 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Mama2016</title>
-	<!-- <link rel="stylesheet" href="./css/style.css"> -->
-	<link rel="stylesheet" href="./css/page.css">
+    <link rel="stylesheet" href="./css/animate.min.css">
+	<link rel="stylesheet" href="./css/opening.css">
+    <link rel="stylesheet" href="./css/main.css">
+
 </head>
 <body>
 	<div class="page-wrapper">
-<!-- 		<header>
-			<div class="lft btn">Mama2016</div>
-			<div class="rgt">
-				<div class="btn">Trina</div>
-				<div class="btn">Sherry</div>
-			</div>
-		</header> -->
+		
 		<div class="page-body">
 			<div class="page" id="top">
 				<section class="container">
@@ -40,10 +36,34 @@
 					  </div>
 				</section>
 			</div>
-			<div id="trina">
-				
-			</div>
-			<div id="sherry">
+			<div id="main" class="page hidden">
+				<header class="show-on-main animated">
+					<div class="lft btn">Mama2016</div>
+					<div class="rgt">
+						<div class="btn">Trina</div>
+						<div class="btn">Sherry</div>
+					</div>
+				</header>
+				<section>
+					<div class="btn-wrap animated show-on-main">
+						<div class="photo">
+							<img class="img" src="http://placehold.it/200x200">
+						</div>
+						<button class="btn" type="button">See more...</button>
+					</div>
+					<div id="trina" class="hidden">
+					</div>
+				</section>
+				<section>
+					<div class="btn-wrap animated show-on-main">
+						<div class="photo">
+							<img class="img" src="http://placehold.it/200x200">
+						</div>
+						<button class="btn" type="button">See more...</button>
+					</div>
+					<div id="sherry" class="hidden">
+					</div>
+				</section>
 				
 			</div>
 		</div>
@@ -51,6 +71,6 @@
 			
 		</footer>
 	</div>
-	
+	<script src="/js/page.js"></script>
 </body>
 </html>
