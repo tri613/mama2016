@@ -14,9 +14,10 @@ var cssProcess = lazypipe()
 
 gulp.task('serve', ['css-process'], function() {
     browserSync.init(config.browserSync);
-    gulp.watch(config.css.src, ['inject-css']);
+    gulp.watch(config.css.src, ['css-process']);
     gulp.watch(config.js.src, ['browser-reload']);
     gulp.watch(config.html.src, ['browser-reload']);
+    gulp.watch("./css/*.css", ['inject-css']);
 });
 
 gulp.task('watch-css', ['css-process'], function() {
@@ -30,9 +31,7 @@ gulp.task('css-process', function () {
 });
 
 gulp.task('inject-css', function() {
-     return gulp.src(config.css.src)
-        .pipe(cssProcess())
-        .pipe(gulp.dest(config.css.dest))
+     return gulp.src("./css/*.css")
         .pipe(browserSync.stream());
 });
 

@@ -46,25 +46,17 @@ body {
 	padding: 0;
 	margin: 0;
 }
-
-.page-wrapper {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	top: 0; left: 0;
-	color: #FFF;
-	font-family: Raleway, 微軟正黑體, "Microsoft JhengHei", Arial, Helvetica, sans-serif;
-	
-	.page {
-		overflow: hidden;
+#top {
+	height: 100vh;
+	position: fixed;
+	@include change-background(280,#98c5ff, #ceed7c, #ffcc13, #ffab7f, #c97fff);
+	@include change-background(298, $peach);
+	.container {
+		visibility: hidden;
 	}
-
-	#top {
-		// @include change-background(298, $peach);
-		@include change-background(280,#98c5ff, #ceed7c, #ffcc13, #ffab7f, #c97fff);
-		height: 100vh;
-
+	&.active {
 		.container {
+		  visibility: visible;
 		  position: relative;
 		  top: -100%;
 		  left: 50%;
@@ -108,8 +100,8 @@ body {
 			    top: 0;
 			    transform: rotateY(0deg);
 			    animation: showHeart $basic-duration forwards $delay-start-time+2
-			    	, heartbeat 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards $delay-start-time+3 9 alternate
-			    	, scaleToFullSreen 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards $delay-start-time+8
+			    	, heartbeat 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards $delay-start-time+3 6 alternate
+			    	, scaleToFullSreen 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards $delay-start-time+5
 			    ;
 
 			    > img {
