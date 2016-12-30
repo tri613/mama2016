@@ -48,6 +48,7 @@ body {
 }
 #top {
 	height: 100vh;
+	position: fixed;
 	@include change-background(280,#98c5ff, #ceed7c, #ffcc13, #ffab7f, #c97fff);
 	@include change-background(298, $peach);
 	.container {
@@ -99,8 +100,8 @@ body {
 			    top: 0;
 			    transform: rotateY(0deg);
 			    animation: showHeart $basic-duration forwards $delay-start-time+2
-			    	, heartbeat 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards $delay-start-time+3 9 alternate
-			    	, scaleToFullSreen 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards $delay-start-time+8
+			    	, heartbeat 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards $delay-start-time+3 6 alternate
+			    	, scaleToFullSreen 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards $delay-start-time+5
 			    ;
 
 			    > img {

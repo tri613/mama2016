@@ -4,30 +4,36 @@
 	const mainPage = document.querySelector('#main');
 	const fadeInFirst = document.querySelectorAll('.animated[data-order="1"]');
 	const fadeInSecond = document.querySelectorAll('.animated[data-order="2"]');
-
-	console.log(fadeInFirst, fadeInSecond);
+	const openBtn = document.querySelectorAll('.open-btn');
 
 	function animationEndHandler (e) {
 		if (e.animationName == "scaleToFullSreen") {
-			//render main page
 			renderMainPage();
+			setTimeout(renderMainSecond, 500);
 		}
 	}
 
 	function renderMainPage(e) {
 		mainPage.classList.remove("hidden");
-		fadeInFirst.forEach(item => item.classList.add('fadeInDown'));
+		fadeInFirst.forEach(item => { 
+			item.classList.remove("hidden"); 
+			item.classList.add("fadeInDown"); 
+		});
 	}
 
 	function renderMainSecond(e) {
 		fadeInSecond.forEach(item => {
 			item.classList.remove("hidden");
-			item.classList.add('fadeInDown');
+			item.classList.add("fadeInDown");
 		});
 	}
 
+	function toggleContent(e) {
+		const content = document.querySelector(`#${this.dataset.author}`);
+		content.classList.toggle('hidden');
+		content.classList.toggle('open');
+	}
+
 	heart.addEventListener("animationend", animationEndHandler);
-	// fadeInFirst.forEach(item => item.addEventListener("animationend", renderMainSecond));
-	renderMainPage();
-	setTimeout(renderMainSecond, 500);
+	openBtn.forEach(btn => btn.addEventListener('click', toggleContent));
 })();
