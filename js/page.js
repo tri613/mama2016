@@ -11,16 +11,6 @@
 		let xs = [];
 		let delays = [];
 		if (e.animationName == "showHeart") {
-			// hearts.forEach((heart, i) => {
-			// 	const x = (Math.floor(Math.random() * 20) - 10) * 20;
-			// 	const delay = Math.round(Math.random() * 100) / 100;
-			// 	xs.push(x);
-			// 	delays.push(delay);
-			// 	heart.style.transitionDelay = `${delay}s`;
-			// 	heart.style.webkitTransitionDelay = `${delay}s`;
-			// 	heart.style.transform = `translate(${x}%, -100vh)`;
-			// });
-			// console.log(xs, delays);
 			hearts.forEach(heart =>  heart.classList.add('active'));
 		}
 	}
@@ -48,9 +38,11 @@
 	}
 
 	function toggleContent(e) {
-		const content = document.querySelector(`#${this.dataset.author}`);
-		content.classList.toggle('hidden');
+		const hash = `#${this.dataset.author}`;
+		const content = document.querySelector(hash);
+		this.classList.toggle('active');
 		content.classList.toggle('open');
+	    scrollTo(hash);
 	}
 
 	heart.addEventListener("animationstart", flyHearts);

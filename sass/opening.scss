@@ -4,6 +4,7 @@ $basic-duration: 1s;
 $cubic: cubic-bezier(0.65, 0.05, 0.36, 1);
 $heart-color: #f15959;
 $rainbow: #e91e63, #ff5722, #ffc107, #25a52a, #2da2ff, #9c27b0, #f44336;
+$blue-pink: #f3d8ec, #a1c1f3;
 
 %strip-bg {
 	background-color: hsl(2, 57%, 40%);
@@ -13,7 +14,7 @@ $rainbow: #e91e63, #ff5722, #ffc107, #25a52a, #2da2ff, #9c27b0, #f44336;
 }
 
 %star-bg {
-	background:
+	background-image:
 	linear-gradient(324deg, #232927 4%,   transparent 4%) -70px 43px,
 	linear-gradient( 36deg, #232927 4%,   transparent 4%) 30px 43px,
 	linear-gradient( 72deg, #e3d7bf 8.5%, transparent 8.5%) 30px 43px,
@@ -46,12 +47,17 @@ $rainbow: #e91e63, #ff5722, #ffc107, #25a52a, #2da2ff, #9c27b0, #f44336;
 body {
 	padding: 0;
 	margin: 0;
+	
+}
+.page-wrapper {
 }
 #top {
 	height: 100vh;
 	position: fixed;
-	background-color: #4d5cab;
-	// @include change-background(280,#98c5ff, #ceed7c, #ffcc13, #ffab7f, #c97fff);
+	@include change-background(270, $blue-pink);
+
+	// background-color: #4d5cab;
+	// @include change-background(230, #98c5ff, #ceed7c, #ffcc13, #ffab7f, #c97fff);
 	// @include change-background(298, $peach);
 	.container {
 		visibility: hidden;
@@ -175,12 +181,12 @@ body {
 				}
 			}
 			h1 {
-			    color: #000;
+			    color: #ff1d1d;
 				text-align: center;
 			    margin: 0;
-			    padding-top: 15%;
 				font-size: 22px;
-			    padding-top: 60px;
+    			padding-top: 90px;
+    			font-weight: bold;
 			}
 		}
 	}
@@ -190,7 +196,7 @@ $ds : 0s, 0.58s, 0.69s, 0.13s, 0.76s, 0.2s, 0.81s, 0s, 0.43s, 0.3s, 0.25s, 0.5s;
 @each $s in $xs{
     $i: index($xs, $s);
 	.sm-heart-#{$i} {
-		$p: $i * 100;
+		$p: $i * 57;
 		& > *:after {
 			background: adjust-hue($heart-color, $p) !important;
 		}

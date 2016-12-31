@@ -1,0 +1,128 @@
+.hidden { display: none; }
+$main-color: #898199;
+header {
+	position: fixed;
+	/*background: rgba(255, 255, 255, 0.45);*/
+	background:	rgba($main-color, 0.7);
+	width: 100%;	
+	z-index: 10;
+	.btn {
+		display: inline-block;
+		padding: 10px;
+		margin-left: 10px;
+	}
+	.rgt {
+		text-align: right;
+		display: inline-block;
+		float:right;
+	}
+}
+
+.page-wrapper {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0; left: 0;
+	color: #FFF;
+	font-family: Raleway, 微軟正黑體, "Microsoft JhengHei", Arial, Helvetica, sans-serif;
+	
+	.page {
+		overflow: hidden;
+		position: absolute;
+		top: 0;
+		left: 0;
+	    width: 100%;
+	    min-height: 100vh;
+	}
+}
+
+.flex-wrap {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	padding-top: 60px;
+}
+#main section {
+	flex: 1;
+    /*align-items: center;*/
+    /*display: flex;*/
+}
+.btn-wrap {
+	text-align: center;
+	margin: 1.5em auto;
+}
+.btn-wrap > * { 
+	/*display: inline-block; */
+	vertical-align: middle;
+	margin: 15px auto;
+}
+
+.btn-wrap .btn {
+    border-radius: 3px;
+    border: 1px solid $main-color; 
+    background-color: transparent;
+    padding: 10px 20px;
+    width: 210px;
+    color: $main-color;
+    line-height: 25px;
+    font-size: 18px;
+    font-weight: bold;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.btn-wrap .btn.active {
+	background: $main-color;
+    color: #FFF;
+}
+
+.photo {
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+}
+
+.photo > img{
+	border-radius: 50%;
+	object-fit: cover;
+    object-position: center;
+    display: block; width: 100%;
+    height: 100%;
+}
+
+.content {
+	max-height: 0;
+    transition: max-height 0.5s ease-in;
+	overflow: hidden; 
+	position: relative;
+}
+
+.content.open {
+	max-height: 1100px;
+}
+.content-body {
+    padding: 1px 15px;
+	line-height: 1.5em;
+	font-size: 18px;
+	background-color: #FFF;
+    color: #7f7690;
+    margin-top: 20px;
+    position: relative;
+}
+.content-body:after {
+   bottom: 100%;
+	left: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	border-color: rgba(136, 183, 213, 0);
+	border-bottom-color: #FFF;
+	border-width: 20px;
+	margin-left: -20px;
+}
+
+
