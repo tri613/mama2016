@@ -7,7 +7,7 @@
 		const dest = $(selector).offset().top;
 		if (currentOffset <= dest) {
 			$body.animate({
-	            scrollTop: dest
+	            scrollTop: dest - 360
 	        }, 800, "easeInOutExpo");
 		}
 	}
